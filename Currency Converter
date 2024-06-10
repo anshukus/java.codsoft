@@ -1,0 +1,36 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class currencyconverter{
+    public static void main(String[] args) {
+        // Currency Rates 
+        Map<String, Double> rates = new HashMap<>();
+        rates.put("USD", 1.0);
+        rates.put("EUR", 0.93);
+        rates.put("KWD", 0.31);
+        rates.put("JPY", 156.96);
+        rates.put("INR",83.47);
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            // Choose Currency
+            System.out.println("Welcome to the Currency converter tool!");
+            System.out.println("Select Currency:USD,INR,KWD,JPY,EUR ");
+            System.out.println("Enter the currency what you want to convert:");
+            String baseCurrency = scanner.next().toUpperCase();
+            System.out.println("Enter the currency in which you want to convert:");
+            String convertCurrency = scanner.next().toUpperCase();
+
+            // Enter Amount 
+            System.out.println("Enter the amount you want to convert:");
+            double amount = scanner.nextDouble();
+
+            // Currency Conversion
+            double rate = rates.get(convertCurrency) / rates.get(baseCurrency);
+            double convertedAmount = amount * rate;
+
+            // Display Result
+            System.out.printf("%.2f %s is equivalent to %.2f %s%n", amount, baseCurrency, convertedAmount, convertCurrency);
+        }
+    }
+}
