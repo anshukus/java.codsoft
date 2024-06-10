@@ -1,0 +1,49 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class numberguessinggame{
+    private static final int MAXIMUM_ATTEMPTS = 5;
+    private static final int RANGE_BEGIN = 1;
+    private static final int RANGE_KHATAM = 100;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random raaandom = new Random();
+         int creditscore = 0;
+
+          while (true) {
+           int attempts = 0;
+             int guessthenumber = RANGE_BEGIN + raaandom.nextInt(RANGE_KHATAM - RANGE_BEGIN + 1);
+
+                 while (attempts < MAXIMUM_ATTEMPTS) {
+                  System.out.println(" Enter your guess number between 1 to 100:");
+                   int guess = scanner.nextInt();
+                    attempts++;
+
+                     if (guess < guessthenumber) {
+                       System.out.println("Too low!");
+                          } else if (guess > guessthenumber) {
+                            System.out.println("Too high!");
+                              } else {
+                                 System.out.println("wow!You have guessed correct number " + attempts + " attempts.");
+                                     creditscore += MAXIMUM_ATTEMPTS - attempts;
+                                       break;
+                }
+            }
+
+                                           if (attempts == MAXIMUM_ATTEMPTS) {
+                                             System.out.println("sorry, you have guessed wrong number " + guessthenumber);
+            }
+
+                                   System.out.println("Your credit score is: " + creditscore);
+    System.out.println("Do you want to play again ? (yes/no)");
+
+                          String playAgain = scanner.next();
+            if (!playAgain.equalsIgnoreCase("yes")) {
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}
